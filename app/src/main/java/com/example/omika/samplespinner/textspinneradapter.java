@@ -10,11 +10,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class textspinneradapter extends ArrayAdapter {
-    private  textspinneradapter(Context context, ArrayList<textspinner> textspinnerArrayList) {
-        super(context, 0, textspinnerArrayList);
+
+    Context context;
+
+    ArrayList<textspinner>textspinners;
+
+
+    public   textspinneradapter(Context context, ArrayList<textspinner> textspinnerArrayList) {
+        super(context,0, textspinnerArrayList);
+        this.context=context;
+        this.textspinners=textspinnerArrayList;
     }
 
     @NonNull
@@ -25,25 +36,31 @@ public class textspinneradapter extends ArrayAdapter {
 
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
         return initView(position, convertView, parent);
     }
 
+
+
     private View initView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.holder, parent, false
-            );
-        }
+
+        convertView = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.holder, parent, false
+        );
+
 
         ImageView imageViewFlag = convertView.findViewById(R.id.textimage);
         TextView textViewName = convertView.findViewById(R.id.texttext);
 
-        textspinner currentItem = (textspinner) getItem(position);
+        Glide.with(context).load(textspinners.get(position).gettextImage()).into(imageViewFlag);
 
-        if (currentItem != null) {
-            imageViewFlag.setImageResource(currentItem.gettextImage());
-            textViewName.setText(currentItem.gettext());
-        }
+
+
+
+
+
+        textViewName.setText(textspinners.get(position).gettext());
+
 
         return convertView;
     }

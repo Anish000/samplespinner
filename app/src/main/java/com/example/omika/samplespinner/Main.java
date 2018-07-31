@@ -1,6 +1,7 @@
 package com.example.omika.samplespinner;
 
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,11 +20,15 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        mList = new ArrayList<>();
+
         initList();
+
 
         Spinner spinnerCountries = findViewById(R.id.spinnertext);
 
-        mAdapter = new textspinneradapter(this, mList);
+        mAdapter = new textspinneradapter(getApplicationContext(), mList);
         spinnerCountries.setAdapter(mAdapter);
 
         spinnerCountries.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -40,10 +45,13 @@ public class Main extends AppCompatActivity {
             }
         });
     }
+
+
     private void initList() {
-        mList = new ArrayList<>();
-        mList.add(new textspinner("Bold", R.drawable.text));
-        mList.add(new textspinner("Format", R.drawable.format));
-        mList.add(new textspinner("Translate", R.drawable.translate));
+        mList.add(new textspinner("Bold",R.drawable.ic_launcher_background));
+        mList.add(new textspinner("Format", R.drawable.ic_launcher_background));
+        mList.add(new textspinner("Translate",R.drawable.ic_launcher_background));
+
+
     }
 }
