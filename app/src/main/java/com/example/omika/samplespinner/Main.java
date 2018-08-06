@@ -48,9 +48,8 @@ public class Main extends AppCompatActivity {
 
 
     private void initList() {
-        mList.add(new textspinner("Bold",R.drawable.ic_launcher_background));
-        mList.add(new textspinner("Format", R.drawable.ic_launcher_background));
-        mList.add(new textspinner("Translate",R.drawable.ic_launcher_background));
+        mList.add(new textspinner("Bold", R.drawable.ic_bold));
+        mList.add(new textspinner("Italic", R.drawable.ic_italic));
 
 
     }
